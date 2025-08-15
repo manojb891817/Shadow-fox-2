@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RCB 2025 Stats</title>
+  <link rel="stylesheet" href="stats.css" />
+</head>
+<body>
+   <header class="header">
+        <img src="rcb-logo-png_seeklogo-531612.png" alt="RCB Logo" class="logo" />
+
+        <div class="search-container">
+            <input type="text" id="yearInput" placeholder="Enter Year (e.g., 2016)" />
+            <button onclick="searchPlayer()">Search</button>
+        </div>
+
+        <nav class="navbar">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="players.html" class="nav-link">Players</a>
+            <a href="schedule.html" class="nav-link">Schedule</a>
+            <a href="stats.html" class="nav-link">Stats</a>
+            <a href="fan.html" class="nav-link">Fan-Zone</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+    </header>
+    <div id="yearResultsContainer" class="year-results-container"></div>
+<div class="view-switch">
+  <button id="battersBtn" class="active">Batters</button>
+  <button id="allroundBtn">All-Rounders</button>
+  <button id="bowlersBtn">Bowlers</button>
+</div>
+
+  <main id="statsContainer"></main>
+
+  <footer class="footer">
+    <div class="social-links">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <p>© 2024 Royal Challengers Bangalore. All Rights Reserved.</p>
+  </footer>
+
+  <script src="stats.js"></script>
+    <style>
+    /* Add these styles to your existing CSS */
+    .year-results-container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease-out;
+      position: relative;
+    }
+    
+    .year-results-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .year-result-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF3F3 100%);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      border: 1px solid #E0A0A0;
+      color: #333;
+      position: relative;
+    }
+    
+    .back-button {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 5px 15px;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 10;
+    }
+    
+    .back-button:hover {
+      background: #333;
+    }
+    
+    .year-result-header {
+      background: linear-gradient(135deg, #EC1C24 0%, #D11D27 100%);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .year-result-header h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .year-result-header .year {
+      font-weight: bold;
+      color: #FFD700;
+    }
+    
+    .year-result-content {
+      padding: 20px;
+    }
+    
+    .performance-stats {
+      margin-bottom: 15px;
+    }
+    
+    .stat-row {
+      display: flex;
+      margin-bottom: 8px;
+    }
+    
+    .stat-label {
+      font-weight: bold;
+      min-width: 150px;
+      color: #D11D27;
+    }
+    
+    .stat-value {
+      flex: 1;
+    }
+    
+    .season-highlights {
+      background-color: #FFF8F8;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #D11D27;
+      margin-top: 20px;
+    }
+    
+    .season-highlights h4 {
+      margin-top: 0;
+      color: #D11D27;
+    }
+    
+    .error-message {
+      background-color: #FFEBEE;
+      color: #D32F2F;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #D32F2F;
+      text-align: center;
+    }
+  </style>
+    <!-- JavaScript (replace your existing search function) -->
+  <script>
+    // Search Player Function with Back Button
+    function searchPlayer() {
+      const yearInput = document.getElementById('yearInput').value;
+      const resultsContainer = document.getElementById('yearResultsContainer');
+      
+      // Start fade out
+      resultsContainer.classList.remove('visible');
+      
+      setTimeout(() => {
+        resultsContainer.innerHTML = '';
+        
+        // Validate input
+        if (!yearInput || isNaN(yearInput) || yearInput < 2008 || yearInput > 2025) {
+          resultsContainer.innerHTML = `
+            <div class="error-message">
+              <p>Please enter a valid year between 2008 and 2025</p>
+            </div>
+          `;
+          fadeInResults();
+          return;
+        }
+
+        const year = parseInt(yearInput);
+        const resultHTML = generateYearResult(year);
+        resultsContainer.innerHTML = resultHTML;
+        fadeInResults();
+      }, 300);
+    }
+
+    function fadeInResults() {
+      setTimeout(() => {
+        document.getElementById('yearResultsContainer').classList.add('visible');
+      }, 10);
+    }
+
+    function hideResults() {
+      const resultsContainer = document.getElementById('yearResultsContainer');
+      resultsContainer.classList.remove('visible');
+      setTimeout(() => {
+        resultsContainer.innerHTML = '';
+      }, 400);
+    }
+
+    function generateYearResult(year) {
+      const yearData = getYearData(year);
+      return `
+        <div class="year-result-card">
+          <button class="back-button" onclick="hideResults()">✕ Close</button>
+          <div class="year-result-header">
+            <h3>Royal Challengers Bangalore <span class="year">${year}</span></h3>
+            <img src="rcb-logo-png_seeklogo-531612.png" alt="RCB Logo" width="40">
+          </div>
+          <div class="year-result-content">
+            <div class="performance-stats">
+              <div class="stat-row">
+                <span class="stat-label">Position:</span>
+                <span class="stat-value">${yearData.position}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Win-Loss Record:</span>
+                <span class="stat-value">${yearData.record}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Captain:</span>
+                <span class="stat-value">${yearData.captain}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Top Run-scorer:</span>
+                <span class="stat-value">${yearData.topBatsman}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">Top Wicket-taker:</span>
+                <span class="stat-value">${yearData.topBowler}</span>
+              </div>
+            </div>
+            <div class="season-highlights">
+              <h4>Season Highlights</h4>
+              ${yearData.highlights}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getYearData(year) {
+      const data = {
+        2008: { position: "7th out of 8 teams", record: "4 Wins - 10 Losses", captain: "Rahul Dravid (first half), Kevin Pietersen (second half)", topBatsman: "Rahul Dravid (371 runs)", topBowler: "Zaheer Khan (13 wickets)", highlights: "<p>Inaugural IPL season with RCB struggling to find form. The team went through captaincy changes mid-season.</p>" },
+        2009: { position: "Runners-up", record: "9 Wins - 6 Losses", captain: "Kevin Pietersen (first half), Anil Kumble (second half)", topBatsman: "Jacques Kallis (361 runs)", topBowler: "Anil Kumble (21 wickets)", highlights: "<p>Anil Kumble led the team to finals with his inspirational captaincy. Memorable performance in South Africa.</p>" },
+        2010: { position: "3rd place", record: "8 Wins - 6 Losses", captain: "Anil Kumble", topBatsman: "Jacques Kallis (572 runs)", topBowler: "Anil Kumble (17 wickets)", highlights: "<p>Strong performance throughout the season. Jacques Kallis was the backbone of the batting lineup.</p>" },
+        2011: { position: "Runners-up", record: "10 Wins - 6 Losses", captain: "Daniel Vettori", topBatsman: "Chris Gayle (608 runs)", topBowler: "Sreenath Aravind (21 wickets)", highlights: "<p>Chris Gayle joined as replacement and took the tournament by storm. Lost to CSK in a close final.</p>" },
+        2012: { position: "5th place", record: "8 Wins - 7 Losses", captain: "Daniel Vettori", topBatsman: "Chris Gayle (733 runs)", topBowler: "Vinay Kumar (19 wickets)", highlights: "<p>Gayle's record-breaking season with 59 sixes. Team narrowly missed playoffs.</p>" },
+        2013: { position: "5th place", record: "9 Wins - 7 Losses", captain: "Virat Kohli", topBatsman: "Virat Kohli (634 runs)", topBowler: "Vinay Kumar (23 wickets)", highlights: "<p>Virat Kohli's first full season as captain. Consistent performances but missed playoffs.</p>" },
+        2014: { position: "7th place", record: "5 Wins - 9 Losses", captain: "Virat Kohli", topBatsman: "AB de Villiers (395 runs)", topBowler: "Yuzvendra Chahal (12 wickets)", highlights: "<p>Disappointing season with only 5 wins. Team struggled in UAE leg of tournament.</p>" },
+        2015: { position: "3rd place", record: "8 Wins - 6 Losses", captain: "Virat Kohli", topBatsman: "AB de Villiers (513 runs)", topBowler: "David Wiese (16 wickets)", highlights: "<p>AB de Villiers' stunning 133* off 59 balls against MI. Qualified for playoffs.</p>" },
+        2016: { position: "Runners-up", record: "9 Wins - 7 Losses", captain: "Virat Kohli", topBatsman: "Virat Kohli (973 runs - IPL Record)", topBowler: "Yuzvendra Chahal (21 wickets)", highlights: "<ul><li>Virat Kohli's record-breaking season with 4 centuries</li><li>AB de Villiers' 687 runs at strike rate of 168</li><li>Lost to Sunrisers Hyderabad in the final by 8 runs</li></ul>" },
+        2017: { position: "8th Place", record: "6 Wins - 8 Losses", captain: "Virat Kohli", topBatsman: "Virat Kohli", topBowler: "Yuzvendra Chahal", highlights: "<ul><li>RCB struggled throughout the season</li><li>AB de Villiers scored some key innings</li></ul>" },
+        2018: { position: "6th Place", record: "7 Wins - 7 Losses", captain: "Virat Kohli", topBatsman: "Virat Kohli (530 runs)", topBowler: "Yuzvendra Chahal (18 wickets)", highlights: "<ul><li>Strong individual performances but inconsistent team form</li></ul>" },
+        2019: { position: "3rd Place", record: "9 Wins - 5 Losses", captain: "Virat Kohli", topBatsman: "AB de Villiers", topBowler: "Yuzvendra Chahal", highlights: "<ul><li>AB de Villiers played explosive innings</li></ul>" },
+        2020: { position: "4th Place", record: "7 Wins - 7 Losses", captain: "Virat Kohli", topBatsman: "Virat Kohli", topBowler: "Yuzvendra Chahal", highlights: "<ul><li>Solid performances but fell short in playoffs</li></ul>" },
+        2021: { position: "2nd Place", record: "9 Wins - 5 Losses", captain: "Virat Kohli", topBatsman: "Faf du Plessis", topBowler: "Harshal Patel", highlights: "<ul><li>Strong batting performances by Kohli and du Plessis</li></ul>" },
+        2022: { position: "3rd Place", record: "8 Wins - 6 Losses", captain: "Faf du Plessis", topBatsman: "Virat Kohli", topBowler: "Wanindu Hasaranga", highlights: "<ul><li>Young players emerged as stars</li></ul>" },
+        2023: { position: "1st Place", record: "10 Wins - 4 Losses", captain: "Faf du Plessis", topBatsman: "AB de Villiers", topBowler: "Mohammed Siraj", highlights: "<ul><li>RCB won the IPL for the first time in this period</li></ul>" },
+        2024: { position: "2nd Place", record: "9 Wins - 5 Losses", captain: "Faf du Plessis", topBatsman: "Virat Kohli", topBowler: "Wanindu Hasaranga", highlights: "<ul><li>Consistent performances but lost final</li></ul>" },
+        2025: { position: "Champions – 1st IPL Title", record: "RCB defeated Punjab Kings in the final by 6 runs", captain: "Rajat Patidar", topBatsman: "Virat Kohli – 657 runs", topBowler: "Josh Hazlewood – 22 wickets", highlights: "<ul><li>RCB clinched their long-awaited maiden IPL title after 18 seasons</li><li>Epic final win over Punjab Kings by 6 runs</li><li>Virat Kohli starred with 657 runs — RCB’s top run-scorer</li><li>Josh Hazlewood led the bowling with 22 wickets for RCB</li><li>Season interrupted and rescheduled due to national events — made the ultimate comeback</li></ul>" }
+      };
+
+      return data[year] || {
+        position: "Information not available",
+        record: "N/A",
+        captain: "N/A",
+        topBatsman: "N/A",
+        topBowler: "N/A",
+        highlights: "<p>Performance details for this year are not currently available.</p>"
+      };
+    }
+
+    // Enable Enter key to trigger search
+    document.getElementById('yearInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        searchPlayer();
+      }
+    });
+</script>
+</body>
+</html>

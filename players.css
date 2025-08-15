@@ -1,0 +1,446 @@
+:root {
+    --rcb-red: #FF1F3D;
+    --rcb-gold: #FFC400;
+    --rcb-black: #000000;
+    --rcb-dark: #1A1A1A;
+    --rcb-light: #F8F8F8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;  /* used last definition */
+    color: var(--rcb-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #d1001c;
+    padding: 0.7rem 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    color: white;
+    text-align: center;
+}
+
+/* Logo */
+.logo {
+    height: 60px;
+}
+
+.logo img {
+    height: 80px;
+    margin-bottom: 1rem;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 1.1rem;  /* last defined 1.1rem */
+    margin: 0 1rem;
+}
+
+.nav-link {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.6rem 0;
+    transition: background 0.3s, color 0.3s;
+    white-space: nowrap;
+    border-radius: 4px;
+}
+
+.nav-link:hover {
+    color: yellow;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    flex: 1;
+    max-width: 600px;
+}
+
+.search-container input[type="text"] {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    margin: 0;
+}
+
+.search-container button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    margin: 0;
+    transition: background 0.3s;
+}
+
+.search-container button:hover {
+    background: #333;
+}
+
+/* Media Gallery */
+.media-gallery {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Page Title and Tags */
+.page-title {
+    font-size: 2.5rem;
+    color: var(--rcb-red);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.season-tag {
+    display: inline-block;
+    background: var(--rcb-red);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Section Styles */
+.team-section {
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 1.8rem;
+    color: var(--rcb-dark);
+    position: relative;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background: var(--rcb-red);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Players Grid */
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Player & Staff Cards */
+.player-card, .staff-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s forwards;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.player-card:hover, .staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 31, 61, 0.1);
+}
+
+.player-card::before, .staff-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--rcb-red);
+}
+
+.player-card img, .staff-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.player-card:hover img, .staff-card:hover img {
+    transform: scale(1.03);
+}
+
+.player-card p, .staff-card p {
+    padding: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.player-card p {
+    color: var(--rcb-dark);
+}
+
+.staff-card p {
+    color: var(--rcb-red);
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.staff-card p span {
+    color: var(--rcb-dark);
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 0.3rem;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+/* Profile Image */
+.profile-img {
+    max-width: 200px;
+    border-radius: 10px;
+    margin: 1rem 0;
+}
+
+/* Back Buttons */
+#back-btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: #d1001c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+#back-btn:hover {
+    background: #b00018;
+}
+
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background: #d1001c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+    display: none; /* keep hidden by default */
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--rcb-dark);
+}
+
+.social-links {
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: var(--rcb-red);
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--rcb-gold);
+}
+
+.footer p {
+    color: var(--rcb-dark);
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Player Modal */
+.player-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    margin: 50px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.stat-box span:first-child {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .player-card img, .staff-card img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+    }
+    
+    .player-card p, .staff-card p {
+        padding: 0.8rem;
+        font-size: 0.75rem;
+    }
+}
+/* Animation keyframes */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Player header styles with animation */
+.player-header {
+  text-align: center;
+  margin: 2rem 0;
+  color: var(--rcb-red);
+  animation: fadeSlideIn 1s ease forwards;
+}
+
+.player-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.player-header p {
+  font-size: 1.1rem;
+  color: var(--rcb-dark);
+  font-weight: 500;
+}
