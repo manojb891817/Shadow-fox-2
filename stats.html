@@ -152,6 +152,93 @@
       border-radius: 8px;
       border-left: 4px solid #D32F2F;
       text-align: center;
+      /* ✅ Mobile Responsive Fixes */
+@media (max-width: 768px) {
+  /* Navbar turns into vertical stack */
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  /* Logo smaller */
+  .logo {
+    width: 50px;
+  }
+
+  /* Search input responsive */
+  .search-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .search-container input {
+    width: 90%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .search-container button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  /* Stat rows stack */
+  .stat-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .stat-label {
+    min-width: auto;
+    margin-bottom: 4px;
+  }
+
+  /* Headings smaller */
+  .year-result-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .year-result-content {
+    padding: 12px;
+  }
+
+  .back-button {
+    top: 8px;
+    right: 10px;
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .year-result-header h3 {
+    font-size: 1rem;
+  }
+
+  .stat-label,
+  .stat-value {
+    font-size: 14px;
+  }
+
+  .season-highlights {
+    font-size: 14px;
+  }
+}
+
     }
   </style>
     <!-- JavaScript (replace your existing search function) -->
