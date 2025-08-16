@@ -244,6 +244,73 @@
       border-left: 4px solid #D32F2F;
       text-align: center;
     }
+    /* ✅ Responsive Fixes */
+@media (max-width: 1024px) {
+  .players-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .nav-link {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  /* Logo */
+  .logo {
+    width: 60px;
+  }
+
+  /* Players grid */
+  .players-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .player-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .player-card h3 {
+    font-size: 1rem;
+  }
+
+  .player-card p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .players-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .player-card {
+    padding: 10px;
+  }
+
+  .player-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .player-card p {
+    font-size: 0.8rem;
+  }
+}
+
   </style>
 
 <!-- JavaScript (replace your existing search function) -->
