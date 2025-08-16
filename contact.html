@@ -164,6 +164,97 @@
       border-left: 4px solid #D32F2F;
       text-align: center;
     }
+    /* contact.css */
+
+/* Base Styles (desktop/laptop) remain same */
+
+/* ✅ Mobile Responsive Fix */
+@media (max-width: 768px) {
+  /* Header */
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    max-width: 100px;
+    margin-bottom: 10px;
+  }
+
+  .search-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  .search-container input,
+  .search-container button {
+    width: 100%;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  /* Contact Section */
+  .contact-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .contact-form,
+  .contact-info {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Year Results Card */
+  .year-result-card {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .year-result-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .stat-row {
+    flex-direction: column;
+  }
+
+  .stat-label {
+    min-width: auto;
+  }
+}
+
   </style>
 
 <!-- JavaScript (replace your existing search function) -->
