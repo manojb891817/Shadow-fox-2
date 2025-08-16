@@ -299,6 +299,99 @@
       border-radius: 8px;
       border-left: 4px solid #D32F2F;
       text-align: center;
+      /* ✅ Mobile Responsive Fix */
+    @media (max-width: 768px) {
+    header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    max-width: 90px;
+    margin-bottom: 10px;
+  }
+
+  .search-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .search-container input,
+  .search-container button {
+    width: 100%;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  /* Fan Zone Section */
+  .fan-zone {
+    padding: 15px;
+    text-align: center;
+  }
+
+  .fan-zone h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+
+  .fan-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .fan-card {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .fan-card img,
+  .fan-card video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .fan-card p {
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fan-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-link {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .fan-zone h2 {
+    font-size: 1.1rem;
+  }
+
+  .fan-card p {
+    font-size: 0.85rem;
+  }
+}
+
     }
   </style>
     <!-- JavaScript (replace your existing search function) -->
