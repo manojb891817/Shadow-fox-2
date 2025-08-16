@@ -160,6 +160,87 @@
       border-radius: 8px;
       border-left: 4px solid #D32F2F;
       text-align: center;
+      /* ✅ Responsive Fixes */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Make table scrollable on small screens */
+#schedule {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+#schedule th, 
+#schedule td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Navbar responsive */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+}
+
+.navbar .nav-link {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Logo shrink */
+.logo {
+  max-width: 80px;
+  height: auto;
+}
+
+/* Search bar responsive */
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px;
+}
+
+.search-container input {
+  flex: 1 1 auto;
+  min-width: 150px;
+  padding: 8px;
+}
+
+.search-container button {
+  padding: 8px 12px;
+}
+
+/* Adjust text sizes on small screens */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .year-result-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .stat-row {
+    flex-direction: column;
+  }
+
+  .stat-label {
+    min-width: auto;
+  }
+}
+
     }
   </style>
   <!-- JavaScript (replace your existing search function) -->
