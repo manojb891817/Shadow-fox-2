@@ -374,6 +374,65 @@
       border-radius: 8px;
       border-left: 4px solid #D32F2F;
       text-align: center;
+      /* ===== Universal Mobile Fixes ===== */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar, nav ul {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  /* Search bar */
+  .search-container {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .search-container input,
+  .search-container button {
+    width: 100%;
+  }
+
+  /* Generic image containers */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Flex containers (stack on mobile) */
+  .image-info-row,
+  .media-gallery,
+  .video-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Video iframe scaling */
+  iframe {
+    width: 100%;
+    height: auto;
+    min-height: 220px;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  .footer-social-icons {
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+}
+
     }
   </style>
     <!-- JavaScript (replace your existing search function) -->
